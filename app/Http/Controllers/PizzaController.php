@@ -8,6 +8,10 @@ use App\Pizza;
 
 class PizzaController extends Controller
 {
+    // public function __construct() {
+    //     $this->middleware('auth');
+    // }
+
     public function index() {
         // $pizzas = Pizza::all(); 
         // $pizzas = Pizza::orderBy('name', 'desc')->get();
@@ -30,10 +34,20 @@ class PizzaController extends Controller
         $pizza->name = request('name');
         $pizza->type = request('type');
         $pizza->base = request('base');
-        // error_log($pizza);
+        $pizza->toppings = request('toppings');
+        
+        // error_log(request('toppings'));
+        // return request('toppings');
         $pizza->save();
 
         return redirect('/')->with('msg', 'Thank for your order');
+    }
+
+    public function destroy($id) {
+        $pizza = Pizza::findOrFail($id);
+        $pizza->delete();
+
+        return redirect('/pizzas');
     }
 
 }

@@ -27,7 +27,7 @@
                 The Best Way to Chill Time
             </div>
             <p class="msg">{{session('msg')}}</p>
-            <a href="/pizzas/create">Order a Pizza</a>
+            <a href="{{ route('pizzas.create') }}">Order a Pizza</a>
         </div>
     </div>
 @endsection
